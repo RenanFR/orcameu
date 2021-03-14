@@ -64,4 +64,10 @@ public class Address {
 		this.district = district;
 	}
 
+	@Override
+	public String toString() {
+		return "Address [zipCode=" + zipCode + ", city=" + city + ", street=" + street + ", state=" + state
+				+ ", district=" + district + "]";
+	}
+
 }

@@ -18,11 +18,25 @@ public class UserService {
 	AddressService addressService;
 	
 	@Transactional
-	public void save(User userDto) {
+	public User save(User userDto) {
 		Address userAddress = this.addressService.getUserAddressByZipCode(userDto.getAddress().getZipCode());
 		userDto.setAddress(userAddress);
 		userDto.setPassword(BcryptUtil.bcryptHash(userDto.getPassword()));
 		userDto.persistAndFlush();
+		return userDto;
+	}		
+	
+	public User insertTestUser() {
+		User user = new User();
+		user.setEmail("renanfr1047@gmail.com");
+		user.setUsername("Renan Rodrigues");
+		user.setPassword("Renan");
+		user.setRoles("USER");
+		Address address = new Address();
+		address.setZipCode("05359-001");
+		user.setAddress(address);
+		this.save(user);
+		return user;	
 	}		
 
 }
