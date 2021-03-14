@@ -1,9 +1,12 @@
 package br.com.orcameu.model;
 
+import javax.persistence.Embeddable;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Embeddable
 public class Address {
 	
 	@JsonProperty("cep")

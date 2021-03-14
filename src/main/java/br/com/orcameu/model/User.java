@@ -1,20 +1,36 @@
 package br.com.orcameu.model;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import io.quarkus.security.jpa.Password;
+import io.quarkus.security.jpa.Roles;
+import io.quarkus.security.jpa.UserDefinition;
+import io.quarkus.security.jpa.Username;
 
-@Entity(name="users")
+@Entity
+@Table(name = "users")
+@UserDefinition
 public class User extends PanacheEntityBase {
 	
     private String username;
     
+    @Password
     private String password;
     
     @Id
+    @Username
     private String email;
-
+    
+    @Roles
+    private String roles;
+    
+    @Embedded
+    private Address address;
+    
 	public String getUsername() {
 		return username;
 	}
@@ -37,6 +53,28 @@ public class User extends PanacheEntityBase {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getRoles() {
+		return roles;
+	}
+
+	public void setRoles(String roles) {
+		this.roles = roles;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", password=" + password + ", email=" + email + ", roles=" + roles
+				+ ", address=" + address + "]";
 	}	
 
 }
