@@ -30,6 +30,7 @@
     </dependencies>
   </dependencyManagement>
   <dependencies>
+  
 	  <dependency>
 	      <groupId>io.quarkus</groupId>
 	      <artifactId>quarkus-resteasy-jackson</artifactId>
@@ -37,17 +38,7 @@
 	  
 	  <dependency>
 	      <groupId>io.quarkus</groupId>
-	      <artifactId>quarkus-resteasy-mutiny</artifactId>
-	  </dependency>
-	  
-	  <dependency>
-	      <groupId>io.quarkus</groupId>
 	      <artifactId>quarkus-rest-client</artifactId>
-	  </dependency>
-	  
-	  <dependency>
-	      <groupId>io.quarkus</groupId>
-	      <artifactId>quarkus-rest-client-jackson</artifactId>
 	  </dependency>
 	  
 	  <dependency>
@@ -88,7 +79,36 @@
 	    <artifactId>quarkus-panache-mock</artifactId>
 	    <scope>test</scope>
 	</dependency>
-		    
+	
+	<dependency>
+	    <groupId>io.quarkus</groupId>
+	    <artifactId>quarkus-resteasy</artifactId>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-multipart-provider -->
+	<dependency>
+	    <groupId>org.jboss.resteasy</groupId>
+	    <artifactId>resteasy-multipart-provider</artifactId>
+	</dependency>
+	
+    <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi</artifactId>
+        <version>5.0.0</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi-ooxml</artifactId>
+        <version>5.0.0</version>
+    </dependency>  	
+    
+	<dependency>
+		<groupId>stax</groupId>
+		<artifactId>stax</artifactId>
+		<version>1.2.0</version>
+	</dependency>    	
+	
   </dependencies>
   <build>
     <plugins>

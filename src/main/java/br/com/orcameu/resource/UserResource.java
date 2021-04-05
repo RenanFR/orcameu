@@ -38,7 +38,6 @@ public class UserResource {
     @GET
     @Path("/address")
     @RolesAllowed("USER")
-    @Produces(MediaType.APPLICATION_JSON)
     public Response getUserAddress(@Context SecurityContext securityContext) {
     	User user = User.findById(securityContext.getUserPrincipal().getName());
 		return Response.ok(user.getAddress()).build();
