@@ -75,6 +75,7 @@ public class BudgetService {
 							entry.setDate(expenseDate.toInstant()
 									.atZone(ZoneId.systemDefault())
 									.toLocalDateTime());
+							budgetMonth.setMonthNumber(entry.getDate().getMonth().getValue());
 						}
 					}, () -> { });
 					Optional.ofNullable(expenseRow.getCell(6)).ifPresentOrElse(type -> {

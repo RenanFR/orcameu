@@ -28,6 +28,9 @@ public class BudgetMonth {
 	@Column(name = "nome")
 	private String monthName;
 	
+	@Column(name = "num_mes")
+	private Integer monthNumber;
+	
 	@Transient
 	private BigDecimal lastMonthBalance;
 	
@@ -67,6 +70,14 @@ public class BudgetMonth {
 
 	public void setMonthName(String monthName) {
 		this.monthName = monthName;
+	}
+
+	public Integer getMonthNumber() {
+		return monthNumber;
+	}
+
+	public void setMonthNumber(Integer monthNumber) {
+		this.monthNumber = monthNumber;
 	}
 
 	public BigDecimal getLastMonthBalance() {
