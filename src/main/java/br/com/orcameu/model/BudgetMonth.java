@@ -16,6 +16,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "mes_orcamento")
 public class BudgetMonth {
@@ -47,13 +50,15 @@ public class BudgetMonth {
 	private Boolean isCreditCardBillPaid;
 	
 	@OneToMany(mappedBy = "month", cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private List<BudgetEntry> entries = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "month", cascade = CascadeType.ALL)
 	private List<BudgetAdjustmentEntry> adjustments = new ArrayList<>();
 	
     @ManyToOne
-    @JoinColumn(name = "orcamento_id", nullable = false)	
+    @JoinColumn(name = "orcamento_id", nullable = false)
+    @JsonBackReference
 	private Budget budget;
 
 	public Long getId() {

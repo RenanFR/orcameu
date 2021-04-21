@@ -1,9 +1,15 @@
 package br.com.orcameu.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.quarkus.security.jpa.Password;
@@ -30,6 +36,10 @@ public class User extends PanacheEntityBase {
     
     @Embedded
     private Address address;
+    
+	@OneToMany(mappedBy = "user")
+	@JsonManagedReference
+	private List<Budget> budgets = new ArrayList<>();    
     
 	public String getUsername() {
 		return username;

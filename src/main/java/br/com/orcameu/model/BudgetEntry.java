@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "movimentacoes_mes")	
 public class BudgetEntry {
@@ -41,6 +43,7 @@ public class BudgetEntry {
 
     @ManyToOne
     @JoinColumn(name = "mes_id")
+    @JsonBackReference
 	private BudgetMonth month;
 
 	public Long getId() {

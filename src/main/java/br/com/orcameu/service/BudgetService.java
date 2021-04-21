@@ -4,6 +4,7 @@ import java.io.File;
 import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
@@ -29,6 +30,8 @@ import br.com.orcameu.model.BudgetEntry;
 import br.com.orcameu.model.BudgetEntryStatus;
 import br.com.orcameu.model.BudgetEntryType;
 import br.com.orcameu.model.BudgetMonth;
+import br.com.orcameu.model.User;
+import br.com.orcameu.repository.BudgetEntryRepository;
 import br.com.orcameu.repository.BudgetRepository;
 
 @ApplicationScoped
@@ -37,12 +40,15 @@ public class BudgetService {
 	private static final Logger LOG = Logger.getLogger(BudgetService.class);
 	
 	@Inject
-	BudgetRepository budgetRepository;	
+	BudgetRepository budgetRepository;
+	
+	@Inject
+	BudgetEntryRepository entryRepository;	
 
 	@Transactional
-	public void importFromExcel(File budgetFile) throws Exception {
+	public void importFromExcel(User user, File budgetFile) throws Exception {
 		Budget budget = new Budget();
-		
+		budget.setUser(user);
 		try (Workbook file = new XSSFWorkbook(budgetFile)) {
 			List<BudgetMonth> months = new ArrayList<>();
 			budget.setYear(LocalDateTime.ofInstant(Files.readAttributes(budgetFile.toPath(), BasicFileAttributes.class).creationTime().toInstant(), ZoneOffset.UTC).getYear());
@@ -141,5 +147,18 @@ public class BudgetService {
 
 	}
 	
-
+	public List<BudgetEntry> getAllEntriesFromUserBudget(User user, Integer year, Integer month) {
+		year = year != null? year : LocalDate.now().getYear();
+		month = month != null? month : LocalDate.now().getMonthValue();
+		List<BudgetEntry> entryList = entryRepository.find("FROM BudgetEntry e "
+				+ "JOIN FETCH e.month m "
+				+ "JOIN FETCH m.budget b "
+				+ "JOIN FETCH b.user u "
+				+ "WHERE b.year = ?1 "
+				+ "AND  u.email = ?2 "
+				+ "AND  m.monthNumber = ?3", year, user.getEmail(), month)
+		.list();
+		return entryList;
+	}
+	
 }
