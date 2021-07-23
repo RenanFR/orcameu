@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Embeddable
 public class Address {
-	
 	@JsonProperty("cep")
 	private String zipCode;
 	
