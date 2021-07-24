@@ -18,9 +18,9 @@
     <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
   </properties>
   <scm>
-    <url>scm:git:https://git-codecommit.us-east-1.amazonaws.com/v1/repos/orcameu_quarkus_backend</url>
-    <connection>scm:git:https://git-codecommit.us-east-1.amazonaws.com/v1/repos/orcameu_quarkus_backend</connection>
-    <developerConnection>scm:git:https://git-codecommit.us-east-1.amazonaws.com/v1/repos/orcameu_quarkus_backend</developerConnection>
+    <url>scm:codecommit:https://git-codecommit.us-east-1.amazonaws.com/v1/repos/orcameu_quarkus_backend</url>
+    <connection>scm:codecommit:https://git-codecommit.us-east-1.amazonaws.com/v1/repos/orcameu_quarkus_backend</connection>
+    <developerConnection>scm:codecommit:https://git-codecommit.us-east-1.amazonaws.com/v1/repos/orcameu_quarkus_backend</developerConnection>
     <tag>orcameu-quarkus-backend-1.0.0</tag>
   </scm>  
   <dependencyManagement>
