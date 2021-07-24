@@ -17,12 +17,12 @@ phases:
       - echo Building the Docker image...
       - echo $PWD
       - ls -al
-      - sh mvnw clean package -Dquarkus.container-image.build=true
+      - sh mvnw clean package -Dquarkus.container-image.build=true -Dmaven.test.skip=true
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - sh mvnw clean package -Dquarkus.container-image.push=true -Dquarkus.container-image.registry=811130861489.dkr.ecr.us-east-1.amazonaws.com/orcameu_quarkus_backend
+      - sh mvnw clean package -Dquarkus.container-image.push=true -Dquarkus.container-image.registry=811130861489.dkr.ecr.us-east-1.amazonaws.com/orcameu_quarkus_backend -Dmaven.test.skip=true
       - echo Writing image definitions file...
       - printf '[{"name":"orcameu-quarkus-backend-dev","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 artifacts:
