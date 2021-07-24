@@ -15,12 +15,12 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - ./mvnw clean package -Dquarkus.container-image.build=true
+      - mvnw clean package -Dquarkus.container-image.build=true
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - ./mvnw clean package -Dquarkus.container-image.push=true -Dquarkus.container-image.registry=811130861489.dkr.ecr.us-east-1.amazonaws.com/orcameu_quarkus_backend
+      - mvnw clean package -Dquarkus.container-image.push=true -Dquarkus.container-image.registry=811130861489.dkr.ecr.us-east-1.amazonaws.com/orcameu_quarkus_backend
       - echo Writing image definitions file...
       - printf '[{"name":"orcameu-quarkus-backend-dev","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 artifacts:
