@@ -19,9 +19,10 @@
   </properties>
   
   <scm>
-      <connection>scm:git:https://github.com/RenanFR/orcameu.git</connection>
-      <developerConnection>scm:git:https://github.com/RenanFR/orcameu.git</developerConnection>
-    <tag>HEAD</tag>
+	  <url>https://github.com/RenanFR/orcameu.git</url>
+	  <connection>scm:git:https://github.com/RenanFR/orcameu.git</connection>
+	  <developerConnection>scm:git:https://github.com/RenanFR/orcameu.git</developerConnection>
+	  <tag>HEAD</tag>
   </scm>
   
   <dependencyManagement>
