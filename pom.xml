@@ -18,12 +18,20 @@
     <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
   </properties>
   
-  <scm>
-	  <url>https://github.com/RenanFR/orcameu.git</url>
-	  <connection>scm:git:https://github.com/RenanFR/orcameu.git</connection>
-	  <developerConnection>scm:git:https://github.com/RenanFR/orcameu.git</developerConnection>
-	  <tag>HEAD</tag>
-  </scm>
+	<scm>
+		<url>https://github.com/RenanFR/orcameu.git</url>
+		<connection>scm:git:https://github.com/RenanFR/orcameu.git</connection>
+		<developerConnection>scm:git:https://github.com/RenanFR/orcameu.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+  
+	<distributionManagement>
+	  <repository>
+	    <id>orcameu-codeartifact-domain-orcameu_codeartifact_repo</id>
+	    <name>orcameu-codeartifact-domain-orcameu_codeartifact_repo</name>
+	    <url>https://orcameu-codeartifact-domain-811130861489.d.codeartifact.us-east-1.amazonaws.com/maven/orcameu_codeartifact_repo/</url>
+	  </repository>
+	</distributionManagement>  
   
   <dependencyManagement>
     <dependencies>
