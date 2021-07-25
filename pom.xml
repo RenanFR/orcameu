@@ -17,12 +17,12 @@
     <quarkus.platform.version>1.12.2.Final</quarkus.platform.version>
     <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
   </properties>
+  
   <scm>
-    <url>scm:ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/orcameu_quarkus_backend</url>
-    <connection>scm:ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/orcameu_quarkus_backend</connection>
-    <developerConnection>scm:ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/orcameu_quarkus_backend</developerConnection>
-    <tag>iplib-1.0-snapshot</tag>
+      <connection>scm:git:https://github.com/RenanFR/orcameu.git</connection>
+      <developerConnection>scm:git:https://github.com/RenanFR/orcameu.git</developerConnection>
   </scm>
+  
   <dependencyManagement>
     <dependencies>
       <dependency>
