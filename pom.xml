@@ -31,6 +31,11 @@
 	    <name>orcameu-codeartifact-domain-orcameu_codeartifact_repo</name>
 	    <url>https://orcameu-codeartifact-domain-811130861489.d.codeartifact.us-east-1.amazonaws.com/maven/orcameu_codeartifact_repo/</url>
 	  </repository>
+	  <snapshotRepository>
+	    <id>orcameu-codeartifact-domain-orcameu_codeartifact_repo</id>
+	    <name>orcameu-codeartifact-domain-orcameu_codeartifact_repo</name>
+	    <url>https://orcameu-codeartifact-domain-811130861489.d.codeartifact.us-east-1.amazonaws.com/maven/orcameu_codeartifact_repo/</url>
+	  </snapshotRepository>
 	</distributionManagement>  
   
   <dependencyManagement>
