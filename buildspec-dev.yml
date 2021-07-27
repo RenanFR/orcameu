@@ -1,4 +1,6 @@
 version: 0.2
+env:
+  git-credential-helper: yes
 
 phases:
   install:
@@ -15,15 +17,16 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - echo Building the Docker image...
-      - echo $PWD
-      - ls -al
-      - sh mvnw -s settings.xml -Darguments=-DskipTests release:prepare release:perform
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - sh mvnw -s settings.xml clean package -Dquarkus.container-image.push=true -Dquarkus.container-image.registry=811130861489.dkr.ecr.us-east-1.amazonaws.com -Dquarkus.container-image.name=orcameu_quarkus_backend -Dmaven.test.skip=true
+      - >
+            sh mvnw -s settings.xml clean package 
+            -Dquarkus.container-image.push=true 
+            -Dquarkus.container-image.registry=811130861489.dkr.ecr.us-east-1.amazonaws.com 
+            -Dquarkus.container-image.name=orcameu_quarkus_backend 
+            -Dmaven.test.skip=true
       - echo Writing image definitions file...
       - printf '[{"name":"orcameu_quarkus_backend","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 artifacts:
