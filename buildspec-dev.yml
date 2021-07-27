@@ -9,6 +9,7 @@ phases:
       - echo Logging in to Amazon ECR.....
       - aws --version
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain orcameu-codeartifact-domain --domain-owner 811130861489 --query authorizationToken --output text`
       - REPOSITORY_URI=811130861489.dkr.ecr.us-east-1.amazonaws.com/root/orcameu_quarkus_backend
       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
   build:
@@ -17,13 +18,13 @@ phases:
       - echo Building the Docker image...
       - echo $PWD
       - ls -al
-      - sh mvnw clean package -Dquarkus.container-image.build=true -Dmaven.test.skip=true
+      - sh mvnw -s settings.xml -Darguments=-DskipTests release:prepare release:perform
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - sh mvnw clean package -Dquarkus.container-image.push=true -Dquarkus.container-image.registry=811130861489.dkr.ecr.us-east-1.amazonaws.com -Dquarkus.container-image.name=orcameu_quarkus_backend -Dmaven.test.skip=true
+      - sh mvnw -s settings.xml clean package -Dquarkus.container-image.push=true -Dquarkus.container-image.registry=811130861489.dkr.ecr.us-east-1.amazonaws.com -Dquarkus.container-image.name=orcameu_quarkus_backend -Dmaven.test.skip=true
       - echo Writing image definitions file...
-      - printf '[{"name":"orcameu-quarkus-backend-dev","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"orcameu_quarkus_backend","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 artifacts:
     files: imagedefinitions.json
