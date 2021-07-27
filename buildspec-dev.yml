@@ -28,6 +28,6 @@ phases:
             -Dquarkus.container-image.name=orcameu_quarkus_backend 
             -Dmaven.test.skip=true
       - echo Writing image definitions file...
-      - printf '[{"name":"orcameu_quarkus_backend","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"orcameu-quarkus-backend-svc-dev","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 artifacts:
     files: imagedefinitions.json
